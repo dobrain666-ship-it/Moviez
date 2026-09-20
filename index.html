@@ -1,80 +1,200 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hello, Deno</title>
-  <link rel="preload" href="https://demo-styles.deno.deno.net/fonts/Moranga-Regular.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="https://demo-styles.deno.deno.net/fonts/Moranga-Medium.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="https://demo-styles.deno.deno.net/fonts/Recursive_Variable.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="https://demo-styles.deno.deno.net/styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Movie Zone</title>
   <style>
-    img {
-      display: inline-block;
-      vertical-align: middle;
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: #0d0d0d;
+      color: #fff;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    header {
+      text-align: center;
+      padding: 24px 0;
+      border-bottom: 1px solid #222;
+      margin-bottom: 30px;
+    }
+    header h1 {
+      font-size: 2rem;
+      background: linear-gradient(90deg, #ff3c3c, #ff9500);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    header p { color: #888; margin-top: 6px; font-size: 0.9rem; }
+
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    .search-bar {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    .search-bar input, .search-bar select {
+      padding: 12px 16px;
+      border-radius: 10px;
+      border: 1px solid #333;
+      background: #1a1a1a;
+      color: #fff;
+      font-size: 1rem;
+      outline: none;
+    }
+    .search-bar input { flex: 1; min-width: 200px; }
+    .search-bar input:focus { border-color: #ff3c3c; }
+
+    .search-bar button {
+      padding: 12px 24px;
+      border-radius: 10px;
+      border: none;
+      background: linear-gradient(90deg, #ff3c3c, #ff9500);
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.15s;
+    }
+    .search-bar button:hover { transform: scale(1.03); }
+
+    #player-area {
+      background: #000;
+      border-radius: 12px;
+      min-height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #555;
+      margin-bottom: 30px;
+      border: 1px solid #222;
+      overflow: hidden;
+    }
+    #player-area p { padding: 40px; text-align: center; }
+
+    .quick-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .quick-links button {
+      padding: 14px;
+      border-radius: 10px;
+      border: 1px solid #2a2a2a;
+      background: #161616;
+      color: #ddd;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.15s;
+      text-align: left;
+    }
+    .quick-links button:hover {
+      background: #222;
+      border-color: #ff3c3c;
+      color: #fff;
+    }
+    .quick-links button small {
+      display: block;
+      color: #666;
+      font-size: 0.75rem;
+      margin-top: 4px;
+    }
+
+    footer {
+      text-align: center;
+      color: #444;
+      font-size: 0.8rem;
+      padding: 40px 0 20px;
     }
   </style>
 </head>
-
 <body>
-    <main>
-      <section>
-        <a href="https://deno.com/deploy">
-        </a>
-      <h1>
-        <p>
-          Hello, Deno!
-        </p>
-      </h1>
-      <p>
-        This little example is being served by <a href="https://deno.com/">Deno</a>.
-        You can run it locally or in porduction on <a href="https://deno.com/deploy">Deno Deploy</a> or other hosting platforms.
-      </p>
-      <ul>
-        <li>Run it locally with<code>deno task dev</code></li>
-        <li>Deploy it to <a href="https://deno.com/deploy">Deno Deploy</a> via the CLI by running<code>deno deploy</code></li>
-        <li>Run it locally and share it publically by running <code>deno deploy --connected</code></li>
-      </ul>
-    </section>
-      <hr>
-    <section>
-      <h2>What's next?</h2>
-      <p>
-        You can clone this example and deploy it to Deno Deploy in just a few clicks
-        <a href="https://app.deno.com/new?clone=https://github.com/denoland/examples&path=hello-world"><img src="https://deno.com/button" alt="Deploy on Deno"/></a>
-      </p>
-      <ul>
-        <li>
-          <a href="https://docs.deno.com/examples">More examples in the Deno Docs</a>
-        </li>
-        <li>
-          <a href="https://deno.com/deploy">Deno Deploy Early Access</a>
-        </li>
-      </ul>
-    </section>
-    </main>
-    <hr>
-    <footer>
-      <section>
-      <ul class="flex-btwn">
-        <li>
-          <a href="https://deno.com">BlueSky</a>
-        </li>
-        <li>
-          <a href="https://deno.com">Twitter</a>
-        </li>
-        <li>
-          <a href="https://deno.com">YouTube</a>
-        </li>
-        <li>
-          <a href="https://deno.com">Newsletter</a>
-        </li>
-        <li>
-          <a href="https://deno.com">Deno</a>
-        </li>
-      </ul>
-      </section>
-    </footer>
+  <header>
+    <h1>🎬 Movie Zone</h1>
+    <p>Apni pasand ki movie ya series ka slug daal kar dekhein</p>
+  </header>
+
+  <div class="container">
+    <div class="search-bar">
+      <input type="text" id="slugInput" placeholder="e.g. avengers-endgame, breaking-bad-s1e1" />
+      <select id="typeSelect">
+        <option value="movie">Movie</option>
+        <option value="tv">TV Series</option>
+      </select>
+      <button onclick="loadPlayer()">▶ Play</button>
+    </div>
+
+    <div id="player-area">
+      <p>👆 Upar slug daal kar Play button dabayein</p>
+    </div>
+
+    <h3 style="margin-top: 30px; color: #aaa; font-size: 0.9rem;">Quick Try:</h3>
+    <div class="quick-links">
+      <button onclick="quickLoad('avengers-endgame','movie')">
+        Avengers: Endgame
+        <small>movie</small>
+      </button>
+      <button onclick="quickLoad('breaking-bad-s1e1','tv')">
+        Breaking Bad S1E1
+        <small>tv</small>
+      </button>
+      <button onclick="quickLoad('inception','movie')">
+        Inception
+        <small>movie</small>
+      </button>
+      <button onclick="quickLoad('the-boys-s1e1','tv')">
+        The Boys S1E1
+        <small>tv</small>
+      </button>
+    </div>
+  </div>
+
+  <footer>Powered by Movies API · Deno + Oak</footer>
+
+  <script>
+    const API_KEY = "YOUR_KEY"; // server replace kar dega automatically
+    const PLAYER_AREA = document.getElementById("player-area");
+
+    function loadPlayer() {
+      const slug = document.getElementById("slugInput").value.trim();
+      const type = document.getElementById("typeSelect").value;
+
+      if (!slug) {
+        alert("Pehle slug likho bhai 😅");
+        return;
+      }
+      renderPlayer(slug, type);
+    }
+
+    function quickLoad(slug, type) {
+      document.getElementById("slugInput").value = slug;
+      document.getElementById("typeSelect").value = type;
+      renderPlayer(slug, type);
+    }
+
+    function renderPlayer(slug, type) {
+      PLAYER_AREA.innerHTML = "";
+
+      if (!API_KEY || API_KEY === "YOUR_KEY" || API_KEY === "") {
+        PLAYER_AREA.innerHTML = "<p>⚠️ API Key missing hai. main.ts mein MOVIES_API_KEY set karo.</p>";
+        return;
+      }
+
+      const script = document.createElement("script");
+      script.src = "https://movies-api.faizankhichi.me/api/v1/embed.js";
+      script.setAttribute("data-key", API_KEY);
+      script.setAttribute("data-type", type);
+      script.setAttribute("data-id", slug);
+      PLAYER_AREA.appendChild(script);
+    }
+
+    // Enter key se bhi play ho jaye
+    document.getElementById("slugInput").addEventListener("keydown", (e) => {
+      if (e.key === "Enter") loadPlayer();
+    });
+  </script>
 </body>
 </html>
